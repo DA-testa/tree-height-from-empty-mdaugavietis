@@ -35,7 +35,7 @@ def main():
         nodes = list(map(int, input().split()))
     elif "F" in mode:
         fname = input()
-        with open(fname) as f:
+        with open("./test/"+fname) as f:
             num = int(f.readline())
             nodes = list(map(int, f.readline().split()))
     else:
