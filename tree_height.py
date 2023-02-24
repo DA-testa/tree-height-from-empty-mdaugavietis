@@ -33,11 +33,13 @@ def main():
     if mode == "I":
         num = int(input())
         nodes = list(map(int, input().split()))
-    if mode == "F":
+    elif mode == "F":
         fname = input()
         with open(fname) as f:
             num = int(f.readline())
             nodes = list(map(int, f.readline().split()))
+    else:
+        exit()
     print(compute_height(num, nodes))
 
 # In Python, the default limit on recursion depth is rather low,
