@@ -22,7 +22,7 @@ def compute_height(num, nodes):
             p = nodes[n]
             depths[n]= prevDepth + 1
     return depths[root]
-# for every  node
+# for every node
 # try to go up
 # if there is depth calculated, skip
 # if there is a bigger depth, don't go up
@@ -30,10 +30,10 @@ def compute_height(num, nodes):
 
 def main():
     mode = input()
-    if mode == "I":
+    if "I" in mode:
         num = int(input())
         nodes = list(map(int, input().split()))
-    elif mode == "F":
+    elif "F" in mode:
         fname = input()
         with open(fname) as f:
             num = int(f.readline())
