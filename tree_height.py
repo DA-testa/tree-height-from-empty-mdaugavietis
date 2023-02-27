@@ -3,24 +3,44 @@
 import sys
 import threading
 
-
-def compute_height(n, parents):
-    # Write this function
-    max_height = 0
-    # Your code here
-    return max_height
-
+def compute_height(num, nodes):
+    EMPTY = -1
+    depths = [EMPTY] * num
+    for node, parent in enumerate(nodes):
+#        print(f"check {node} node with parent {parent}")
+        if parent == EMPTY:
+            root = node
+        if depths[node] != EMPTY:
+            continue
+        n = node
+        p = parent
+        depths[n] = 1
+        while depths[p] <= depths[n] and p != EMPTY:
+#            print(f"depth of {n} with parent {parent}")
+            prevDepth = depths[n]
+            n = p
+            p = nodes[n]
+            depths[n]= prevDepth + 1
+    return depths[root]
+# for every node
+# try to go up
+# if there is depth calculated, skip
+# if there is a bigger depth, don't go up
+# if our depth is bigger go up
 
 def main():
-    # implement input form keyboard and from files
-    
-    # let user input file name to use, don't allow file names with letter a
-    # account for github input inprecision
-    
-    # input number of elements
-    # input values in one variable, separate with space, split these values in an array
-    # call the function and output it's result
-
+    mode = input()
+    if "I" in mode:
+        num = int(input())
+        nodes = list(map(int, input().split()))
+    elif "F" in mode:
+        fname = input()
+        with open("./test/"+fname) as f:
+            num = int(f.readline())
+            nodes = list(map(int, f.readline().split()))
+    else:
+        exit()
+    print(compute_height(num, nodes))
 
 # In Python, the default limit on recursion depth is rather low,
 # so raise it here for this problem. Note that to take advantage
